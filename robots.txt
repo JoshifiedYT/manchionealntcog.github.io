@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://manchionealntcog.dpdns.org/sitemap.xml
