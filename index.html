@@ -532,7 +532,9 @@ function unlockAdmin(){
     const dec=CryptoJS.AES.decrypt({ciphertext:ct},{words:keyBytes.words,sigBytes:32},{iv:iv,mode:CryptoJS.mode.CBC,padding:CryptoJS.pad.Pkcs7});
     const html=dec.toString(CryptoJS.enc.Utf8);
     if(!html)throw new Error();
-    document.getElementById('admin-wrapper').innerHTML=html;
+    var _aw=document.getElementById('admin-wrapper');
+    _aw.innerHTML=html;
+    _aw.querySelectorAll('script').forEach(function(s){var ns=document.createElement('script');ns.textContent=s.textContent;document.body.appendChild(ns);s.remove();});
   }catch(e){document.getElementById('admin-key-error').style.display='block';document.getElementById('admin-key-error').textContent='❌ Decryption failed.';}
 }
 window.addEventListener('hashchange',checkHash);
